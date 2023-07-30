@@ -23,6 +23,7 @@
   - [Important](#important)
   - [Search input](#search-input)
   - [number of renders](#number-of-renders)
+-[Rendering](#rendering) 
 - [Class based components](#class-based-components)
   - [state in react](#state-in-react)
   - [Life cycle methods](#life-cycle-methods)
@@ -322,7 +323,126 @@
 - when api call is made then re-renders
 - when we click the top rated restaurants then re-renders `state variable changes`
 - when we type in input box then re-renders `state variable changes`
+# Routing
+- `npm install react-router-dom`
+- Named import
 
+```js
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+```
+
+- whenever we need to create route we need to write routing configuration
+- We create configuration(some info that will tell what will happen on a specific route)
+- `createBrowserRouter` takes a list of [path(an object ) , what should happen on path]
+- while rendering use `<RouterProvider router={appRouter}/>`
+- ErrorELement => if something wrong happens it goes to this specific page
+- `reacter-router-dom` also gives `useRouterError` hook
+- this gives more information about the error
+
+## building header constant and displaying the respective things in the body
+
+- to do this we need to create childern routes
+- we use `outlet`
+- according to the path it fills there
+
+## linking to the anchor tags
+- `in the end it is anchor tag`
+- if we use `a and href="path"` it will take to the desired page but
+- NEVER USE Anchor tag for navigatig
+- if we use that whole page gets refreshed
+- so react helps to navigate without getting whole page refreshed
+- router helps => to use links
+- `Link to="path from router"` to easily make them clickable
+- using this the whole page doesn't load only the requried thing loads
+## In the end it is converted to anchor tag in html so for removing blue links use td:none, and color;black
+## React is known as single page application
+
+- 2 types of routing in webapps
+  1. **client side routing - we don't make network calls because all components are already loaded**
+     - single page application we use `client side routing`
+  2. server side routing - make a network call and the about us page comes from server
+
+```js
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
+import Nav from "./Nav";
+import About from "./About.jsx";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import Contact from "./COntactUs.jsx";
+import Error from "./Error.jsx";
+
+const Applayout = () => {
+  return (
+    <div className="app">
+      <Nav />
+      {/* {- Outlet acts as tunnel which ever path is clicked it makes it pass accordingly} */}
+      <Outlet />
+    </div>
+  );
+};
+// import { Link } from "react-router-dom";
+
+// - `import { Link } from "react-router-dom"`;
+// - instead of `a`- it refreshes whole page while Link doesn't
+// -  `import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"`;
+//link to="path where to navigate"
+
+/*
+
+ <nav>
+      <h3>Logo</h3>
+      <ul>
+        <li>
+        to home page
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+        to about page 
+          <Link to="/about">About</Link>
+        </li>
+        <li>
+        to contact us page
+          <Link to="/contact">Contact us</Link>
+        </li>
+        <li>Login</li>
+      </ul>
+    </nav>
+
+
+*/
+
+// configuration
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    //1st path is main path
+    element: <Applayout />,
+    children: [
+      {
+        path: "/",
+        element: <App />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+    ],
+    errorElement: <Error />,
+  },
+]);
+// react provider helps to render the app
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <RouterProvider router={appRouter} />
+);
+
+
+```
 
 # Class based components
 
