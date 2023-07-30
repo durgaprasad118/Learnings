@@ -1,19 +1,18 @@
 # Table of contents
 
-- [Table of contents](#table-of-contents)
 - [React](#react)
   - [JSX](#jsx)
   - [Components](#components)
   - [style](#style)
   - [props](#props)
   - [Config driven UI](#config-driven-ui)
-  - [keys](#keys)
+- [keys](#keys)
 - [Let's get Hooked](#lets-get-hooked)
   - [Cleaning code](#cleaning-code)
   - [imp exp](#imp-exp)
   - [export - 2 ways](#export---2-ways)
   - [Folder Structure](#folder-structure)
-    - [rendering](#rendering)
+  - [rendering](#rendering)
   - [Filter option](#filter-option)
 - [Hooks](#hooks)
   - [loading](#loading)
@@ -23,7 +22,11 @@
   - [Important](#important)
   - [Search input](#search-input)
   - [number of renders](#number-of-renders)
-- [Rendering](#rendering) 
+- [Routing](#routing)
+  - [building header constant and displaying the respective things in the body](#building-header-constant-and-displaying-the-respective-things-in-the-body)
+  - [linking to the anchor tags](#linking-to-the-anchor-tags)
+  - [In the end it is converted to anchor tag in html so for removing blue links use td:none, and color;black](#in-the-end-it-is-converted-to-anchor-tag-in-html-so-for-removing-blue-links-use-tdnone-and-colorblack)
+  - [React is known as single page application](#react-is-known-as-single-page-application)
 - [Class based components](#class-based-components)
   - [state in react](#state-in-react)
   - [Life cycle methods](#life-cycle-methods)
@@ -140,7 +143,7 @@
 - **src** folder contains source code
 - **utils** contain all the hard coded data
 
-### rendering
+## rendering
 
 - we can render to root in two ways
 
