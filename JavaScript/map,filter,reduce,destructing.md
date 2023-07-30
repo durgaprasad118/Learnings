@@ -6,6 +6,7 @@
 - [destructuring , rest , spread](#destructuring--rest--spread)
 - [optional chaining](#optional-chaining)
 - [Sorting](#comparison-function-sorting)
+- [nullish](#nullish-coalescing-operator)
 
 # class Vs Classname
 - differnce between `class and classname`
@@ -128,3 +129,5 @@ numbers.sort((a,b)=> b-a)
 ```
 -  `(a, b) => a - b` is used as a comparison function=> ascending order  
 -  If the result of the function is negative, `a comes before b`. If the result is positive, `b comes before a`. If the result is zero, the order of `a and b remains unchanged.`
+## Nullish coalescing operator
+- The behavior of the ?? operator is simple: it returns the value of the left-hand operand (a) if it is not null or undefined, and if it is null or undefined, it returns the value of the right-hand operand (b). In other words, it provides a default value (b) when the left-hand operand (a) is null or undefined.
