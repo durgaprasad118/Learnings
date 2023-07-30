@@ -4,7 +4,8 @@
 - [forEach (faster) VS map =\> both require callbacks, (ele,index,arry)](#foreach-faster-vs-map--both-require-callbacks-eleindexarry)
 - [map filter, reduce](#map-filter-reduce)
 - [destructuring , rest , spread](#destructuring--rest--spread)
-
+- [optional chaining](#optional-chaining)
+- [Sorting](#comparison-function-sorting)
 
 # class Vs Classname
 - differnce between `class and classname`
@@ -112,4 +113,18 @@ function getPerson() {
 
 - `const [q, r, ...rest] = [1, 2, 3, 4, 5];`
 - rest is used in the end of the array
+# Optional Chaining
+- The `?.` operator checks if the property on the left side (person.address) exists and is not `null or undefined`. If it is, the expression continues, and the property on the right side (city) is accessed. If, at any point, a property is `null or undefined`, the expression returns `undefined`, and the rest of the chain is skipped.
 
+
+
+## Comparison function sorting
+```js
+const numbers = [5, 2, 8, 1, 10, 3];
+// Sorting in ascending order
+numbers.sort((a, b) => a - b);
+// descending order
+numbers.sort((a,b)=> b-a)
+```
+-  `(a, b) => a - b` is used as a comparison function=> ascending order  
+-  If the result of the function is negative, `a comes before b`. If the result is positive, `b comes before a`. If the result is zero, the order of `a and b remains unchanged.`
