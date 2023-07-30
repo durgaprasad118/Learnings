@@ -23,7 +23,7 @@
   - [Important](#important)
   - [Search input](#search-input)
   - [number of renders](#number-of-renders)
--[Rendering](#rendering) 
+- [Rendering](#rendering) 
 - [Class based components](#class-based-components)
   - [state in react](#state-in-react)
   - [Life cycle methods](#life-cycle-methods)
