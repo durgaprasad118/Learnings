@@ -341,7 +341,32 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 - ErrorELement => if something wrong happens it goes to this specific page
 - `reacter-router-dom` also gives `useRouterError` hook
 - this gives more information about the error
+- create browser router - creates a routing configuration
+- returns a list
 
+  ```js
+  // configuration
+  const appRouter = createBrowserRouter([
+    {
+      path: "/",
+      element: <App />,
+      errorElement:<Error/>
+    },
+    {
+      path: "/about",
+      element: <About />,
+    },
+  ]);
+  ```
+
+
+
+- Router provider helps to render to app
+- Outlet acts as tunnel which ever path is clicked it makes it pass accordingly
+- `import { Link } from "react-router-dom"`;
+- instead of `a`- it refreshes whole page while Link doesn't
+-  `import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"`;
+- 
 ## building header constant and displaying the respective things in the body
 
 - to do this we need to create childern routes
