@@ -38,7 +38,12 @@
   - [parent - child =\> inner child(child)](#parent---child--inner-childchild)
   - [important](#important-1)
   - [componentdidmount](#componentdidmount-1)
-
+- [Optimization](#single-responsibility-principle) 
+  - [single responsibility principle](#single-responsibility-principle)
+  - [Custom Hooks - (js function)](#custom-hooks---js-function)
+  - [creating hook](#creating-hook)
+  - [Online Offline **important**](#online-offline-important)
+  - [Optimising more](#optimising-more)
 # React
 - React element => object
 - when we render this into the dom then it becomes html element
@@ -599,3 +604,109 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   7. Now user sees with New data(api data)
   8. Now `component did update is called`
   9. `Component will unmount is called when we unmount` like when we change the page
+
+
+  ## single responsibility principle
+
+- If you have a function that should have single responsiblity
+- Like menu should display the menu of the restaurants that's it
+- `For each component we make we should give them single responsiblity`
+- `if there are more functions to do break it into further components`
+- if we break our app into several small components then we write test cases for each and while testing we can catch the bug easily
+  - **Use cases**
+  - reusability
+  - maintainable
+  - testable
+
+## Custom Hooks - (js function)
+
+- Not mandatory => makes our app modular, readable
+- Now let us take example of restaurant menu data
+
+  - doing two things
+  - 1. fetching data
+  - 2. showing in ui (this should be single responsibility)
+
+- we will create `useRestaurantmenu hook for fetching the data` by somehow
+- The only function of restaurant menu is to display the menu and `doesn't worry about the data fetching`
+-
+
+## creating hook
+
+1. Think of the end goal
+2. what is the input and output
+3. seperate file for separate hooks
+4. Name the file as same as hook
+5. `start with use` -> not mandatory
+6. First see the usecase and what should it return and it's purpose (input and output)
+
+- if a component has fetching data and displaying option
+  - keep fetching data in separte hook
+  - and use this component to just display
+
+## Online Offline **important**
+
+- whether users internet is online or offline
+- instead of showing home page it shows you are offline
+- online eventListener
+- we will use `useEffect` for calling once
+- and in the body we will import it and check if it is false we will show like you are offline
+- we can show good images or UI something
+
+```js
+import { useState, useEffect } from "react";
+const useOnlineStatus = () => {
+  //initially the online status is true
+  const [status, setState] = useState(true);
+
+  useEffect(() => {
+    window.addEventListener("offline", () => {
+      setState(false);
+    });
+    window.addEventListener("online", () => {
+      setState(true);
+    });
+  }, []);
+  return status;
+};
+export default useOnlineStatus;
+```
+
+## Optimising more
+
+- a lot of components
+- Performance??
+- `Pracel (bundler) is to do bundling-> takes all your files and compile to one file`
+- in the `network js` we can see there
+- **If the application is big and there are tooo many components Then the size of the `js` file will be increased a lot**
+  - Break your app into smaller files
+  - Make smaller bundles of these files => `Chunking, CodeSplitting,Dynamic bundling, lazyloading,`
+- Tips
+
+  - I want to do logical separation of bundles, our bundle should have enough code for a major feature
+  - Building separte bundle
+    - wherever i am importing grocery
+    - I won't import directly
+    - We will do `lazy loading` or `ondemand loading`
+    - `Named import`
+    - IT means when it starts it doesn't load groceries
+    - grocery only loads when it is clicked
+
+- ```js
+  const Grocery = lazy(()=>import("path")))
+  ```
+- `lazy takes a callback function and ` ` import is function`
+- Don't forget return statement
+- When we do that it doesn't have code for Grocery component
+- When we click it we get new js file where it is bundled together
+- when it takes a lot of time to fetch the grocery
+- so in the middle state react tries to render but if not found it throws error
+- To avoid this we use {Suspense} named component
+- ```js
+  <Suspense fallback={<h1>Loading...</h1>}>
+    <Grocery />
+  </Suspense>
+  ```
+  - fallback is like `alternate` like what to load in mean time
+  - we pass `jsx` like shimmer UI
+- We do this `lazy loading , code splitting, dynamic loading` all the code doesn't come only when it is required it comes
