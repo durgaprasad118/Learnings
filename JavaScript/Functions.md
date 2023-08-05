@@ -53,7 +53,7 @@ const one = (x) => x * 4;
 ## Pure functions
 
 - If input is same it gives same output
-
+- It should not change the value of a global variable
 ```js
 function greet(name) {
   return `hello ${name}`;
