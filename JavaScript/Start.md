@@ -4,6 +4,9 @@
 - [Switch Case](#switch-case)
 - [Ternary - WTF](#ternary---wtf)
 - [Math and Number](#math-and-number)
+- [Let vs var](#let-vs-var)
+- [Copying non-primitives](#copying-non-primitives)
+- [for of and in](#for-of-and-in)
 ## Primitives - _Stack Memory_
 
 ```js
@@ -176,4 +179,49 @@ isRaining ? console.log("Take umberella") : console.log("no need");
 
 ```js
 console.log(Math.floor(Math.random() * (max - min + 1)) + min);
+```
+## Let vs var
+- var
+  - function scoped
+  - var adds itself to the window object
+  - 
+- let and const
+  - block `{}` scoped
+  - let and const does't add to the window object 
+  - if we change the value gives => typeError: Assignment to constant variable
+  - let and const in `ES6`
+
+## Copying non-primitives
+- use spread operator
+```js
+let a=[1,2,3,4];
+let b=[...a]
+```
+
+## for of and in
+- for of is used for arrays and in is used to get index in arrays
+
+```js
+let a =[1,2,3];
+for(let b of a){
+    console.log(b);// 1 2 3
+}
+
+for(let p in a){
+    console.log(p);//0 1 2
+}
+```
+- for in is mostly used for objects
+```js
+let user ={
+    name:"dp",
+    age:22,
+    village:"abbugudem"
+}
+for(let key in user){
+    console.log(key);// name, age , village
+    console.log(user[key]);// dp 22 abbugudem
+
+    console.log(`Key is ${key} and value is ${user[key]}`);
+}
 ```
