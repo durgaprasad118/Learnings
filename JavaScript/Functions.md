@@ -1,5 +1,5 @@
 - [parameters vs arguments](#parameters-vs-arguments)
-- [Declaration](#declaration)
+- [Declaration or Statement](#declaration)
 - [Expression](#expression)
 - [Arrow function](#arrow-function)
 - [Pure functions](#pure-functions)
@@ -14,7 +14,7 @@
 - Arguments
   - When we pass the actual value while calling the function
 
-## Declaration
+## Declaration aka Statement
 
 ```js
 function func() {
@@ -29,7 +29,9 @@ const fun = function () {
   console.log(`This is a function expression`);
 };
 ```
-
+ ### Major difference between statement and expression is in hoisting
+   - In the memory creation phase statement is normal function and whole fun body is attached to it
+   - where as  expression it is treated as normal variable and undefined is attached to it
 ## Arrow function
 
 ```js
