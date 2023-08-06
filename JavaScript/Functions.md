@@ -32,6 +32,21 @@ const fun = function () {
  ### Major difference between statement and expression is in hoisting
    - In the memory creation phase statement is normal function and whole fun body is attached to it
    - where as  expression it is treated as normal variable and undefined is attached to it
+## Anonymous Function
+- function without name
+```js
+function(){
+}
+```
+## Named function exrpession
+```js
+let b = function xyz(){
+    console.log("b called");
+}
+
+b();//b called
+xyz();// reference error : xyz not defined
+```
 ## Arrow function
 
 ```js
@@ -72,7 +87,7 @@ console.log(greet("Dp"));
   console.log(`IIFE`);
 })();
 ```
-## First Class funcions
+## First Class funcions aka first class citizens
 - We can assign a function to a varible
 - You can pass a function as a argument
 - You can return a function from a function
