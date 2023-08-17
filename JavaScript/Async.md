@@ -131,3 +131,70 @@ answer
   - async operation completed and promise is resolved with a value
   3. rejected
      - async operation has encountered an error and promise is rejected with an error reason
+
+## Promises
+- An object 
+- Instead of passing callbacks we can ask a function for a promise
+- States
+  - pending
+  - fulfilled
+  - rejected
+- `then` - fulfilled
+- `catch` - rejected
+- `finally` - in all cases
+
+
+## Problem
+```js
+console.log("start");
+
+function loginUser(email, password) {
+  setTimeout(() => {
+    console.log("now we get the email and the email is: "+email);
+    return { userEmail: email };
+  }, 2000);
+}
+
+const user = loginUser("davaid.com", 123456);
+console.log(user); //undefined
+// because the info did not come yet by the time we consoled it
+console.log("end");
+```
+
+## solution
+```js
+console.log("start");
+
+function loginUser(email, password, callback) {
+  setTimeout(() => {
+    console.log("now we get the email and the email is: " + email);
+    callback({ userEmail: email });
+  }, 2000);
+}
+
+const user = loginUser("davaid.com", 123456, (data) => {
+  console.log(data);
+});
+// console.log(user); //undefined
+// because the info did not come yet by the time we consoled it
+console.log("end");
+
+// here i am calling the callback function that is passed once the timer expires
+```
+
+## Promises
+```js
+function loginUser(email, password) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({ userEmail: email });
+    }, 2000);
+  });
+}
+loginUser("dp@gmail.com", 123456).then((data) => console.log(data));
+```
+
+
+
+
+
