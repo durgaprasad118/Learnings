@@ -91,6 +91,24 @@ const ages = users.reduce((acc, curr) => {
 - we can destructure function
 
 ```js
+const obj ={
+  name:'dp',
+  details:{
+    age:20,
+    email:'dp.com'
+  }
+}
+
+
+const {name,details:{age,email}}= obj;
+console.log(name)
+ // console.log(details)//give an error 
+// Reference error details is not defined
+console.log(age)
+console.log(email)
+```
+
+```js
 function getPerson() {
   return {};
 }
