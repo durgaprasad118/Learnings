@@ -106,6 +106,25 @@ console.log(name)
 // Reference error details is not defined
 console.log(age)
 console.log(email)
+
+const obj = {
+  item: "mouse",
+  name: "logitech",
+  description: {
+    price: {
+      saleDay: 4000,
+      normalDay: 8000,
+    },
+  },
+};
+const {
+  description: {
+    price: { saleDay },
+  },
+} = obj;
+
+console.log(`${saleDay}`);//4000
+
 ```
 
 ```js
