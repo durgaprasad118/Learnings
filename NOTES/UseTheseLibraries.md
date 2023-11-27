@@ -3,7 +3,7 @@
 ## Animate On Scroll
 
 - [Website](https://michalsnik.github.io/aos/)
-
+- [video](https://youtu.be/X8_25W5VRIc?si=RMugXeRaRbSJLVjJ)
 - install
 
 ```js
