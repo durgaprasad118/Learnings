@@ -1,0 +1,22 @@
+// methods and properties of parent are passed to child
+// If child and parent has same methods => child Method is called (METHOD OVERRIDIHNG)
+
+class Parent {
+  hello() {
+    console.log("parent hello ");
+  }
+  start() {
+    console.log("parent started");
+  }
+}
+
+class Child extends Parent {
+  hello() {
+    console.log("child hello");
+  }
+}
+
+let a = new Child();
+
+a.hello(); // child hello
+a.start(); // parent started
