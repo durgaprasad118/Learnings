@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { ThemeContextProvider } from "./ThemeContext";
 import Page from "./Page";
 

@@ -3,73 +3,73 @@
 ```js
 function c1(cb) {
   setTimeout(() => {
-    console.log('c1 called')
-    cb()
-  }, 1000)
+    console.log("c1 called");
+    cb();
+  }, 1000);
 }
 
 function c2(cb) {
   setTimeout(() => {
-    console.log('c2 called')
-    cb()
-  }, 1000)
+    console.log("c2 called");
+    cb();
+  }, 1000);
 }
 function c3(cb) {
   setTimeout(() => {
-    console.log('c3 called')
-    cb()
-  }, 1000)
+    console.log("c3 called");
+    cb();
+  }, 1000);
 }
 
 c1(() => {
   c2(() => {
     c3(() => {
-      console.log('done all three')
-    })
-  })
-})
+      console.log("done all three");
+    });
+  });
+});
 
 function P1() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      console.log('p1 called')
-      resolve()
-    }, 1000)
-  })
+      console.log("p1 called");
+      resolve();
+    }, 1000);
+  });
 }
 
 function P2() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      console.log('p2 called')
-      resolve()
-    }, 1000)
-  })
+      console.log("p2 called");
+      resolve();
+    }, 1000);
+  });
 }
 
 function P3() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      console.log('p3 called')
-      resolve()
-    }, 1000)
-  })
+      console.log("p3 called");
+      resolve();
+    }, 1000);
+  });
 }
 
 P1()
   .then(() => P2())
   .then(() => P3())
   .then(() => {
-    console.log('all threetasks are done')
-  })
+    console.log("all threetasks are done");
+  });
 
 async function K() {
-  await P1()
-  await P2()
-  await P3()
-  console.log('all threetasks are done')
+  await P1();
+  await P2();
+  await P3();
+  console.log("all threetasks are done");
 }
-K()
+K();
 ```
 
 ## Classbased Components
@@ -134,19 +134,19 @@ export default Wrapper;
 ```js
 // memo => skips re-renders a component when the props are unchanged
 // in the below only Greeting re-renders when the name changes and not when adress changes
-import { useState, memo } from 'react'
-import './App.css'
+import { useState, memo } from "react";
+import "./App.css";
 
 const App = () => {
-  const [name, setName] = useState('')
-  const [ad, setAd] = useState('')
+  const [name, setName] = useState("");
+  const [ad, setAd] = useState("");
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        width: '50%',
-        gap: '10px',
+        display: "flex",
+        flexDirection: "column",
+        width: "50%",
+        gap: "10px",
       }}
     >
       <input
@@ -163,19 +163,19 @@ const App = () => {
       />
       <Greeting name={name} />
     </div>
-  )
-}
+  );
+};
 
 // const Greeting = ({ name }) => {
 //   console.log("re-rendered!!!");
 //   return <div>Hello {name}</div>;
 // };
 const Greeting = memo(({ name }) => {
-  console.log('render')
-  return <div>Hello {name}</div>
-})
+  console.log("render");
+  return <div>Hello {name}</div>;
+});
 
-export default App
+export default App;
 ```
 
 ## useReducer
@@ -183,36 +183,36 @@ export default App
 ```js
 //useReducer
 // Lets you add reducer  to your component
-import { useState, memo, useReducer } from 'react'
-import './App.css'
+import { useState, memo, useReducer } from "react";
+import "./App.css";
 //defining reducer
 const reducer = (state, action) => {
-  if (action.type == 'inc') {
+  if (action.type == "inc") {
     return {
       count: state.count + 1,
-    }
+    };
   }
-  if (action.type == 'dec') {
+  if (action.type == "dec") {
     return {
       count: state.count - 1,
-    }
+    };
   }
-  if ((action.type = 'reset')) {
+  if ((action.type = "reset")) {
     return {
       count: 0,
-    }
+    };
   }
-}
+};
 const App = () => {
-  const [state, dispatch] = useReducer(reducer, { count: 0 })
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
   return (
     <div>
       <h1>Count: {state.count}</h1>
       <button
         onClick={() => {
           dispatch({
-            type: 'inc',
-          })
+            type: "inc",
+          });
         }}
       >
         Increase
@@ -220,8 +220,8 @@ const App = () => {
       <button
         onClick={() => {
           dispatch({
-            type: 'res',
-          })
+            type: "res",
+          });
         }}
       >
         Reset
@@ -229,57 +229,174 @@ const App = () => {
       <button
         onClick={() => {
           dispatch({
-            type: 'dec',
-          })
+            type: "dec",
+          });
         }}
       >
         Dec
       </button>
     </div>
-  )
-}
-export default App
+  );
+};
+export default App;
 ```
 
 ```js
 //context
 
-import { createContext, useContext, useState } from 'react'
-import './App.css'
+import { createContext, useContext, useState } from "react";
+import "./App.css";
 
-const countContext = createContext({})
-const countContextProvider = countContext.Provider
+const countContext = createContext({});
+const countContextProvider = countContext.Provider;
 const useCount = () => {
-  return useContext(countContext)
-}
+  return useContext(countContext);
+};
 const App = () => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   return (
     <div>
       <countContext.Provider value={{ count, setCount }}>
         <Counter />
       </countContext.Provider>
     </div>
-  )
-}
+  );
+};
 
 const Counter = () => {
-  const { count, setCount } = useCount()
+  const { count, setCount } = useCount();
   return (
     <div>
       <h1>count is :{count}</h1>
       <button
         onClick={() => {
-          setCount(count + 1)
+          setCount(count + 1);
         }}
       >
         Increase
       </button>
     </div>
-  )
-}
-export default App
+  );
+};
+export default App;
 ```
+
+## Differnce between Classbased and Function and useEffect
+
+````js
+
+## UseEffect
+
+- useEffect called when component renders for the firstTime
+
+- if the component unmounts from the DOM then only "return" funciton is called-
+
+```js
+useEffect(() => {
+  console.log("component mounted");
+  return () => {
+    console.log("component unmounted");
+  };
+}, []);
+````
+
+### Life Cycle Events
+
+1. component mounted
+   if the dependency array changes then
+1. return function called
+1. useEffect funcion runs
+
+```js
+import { FunctioalC } from "./Functional";
+const CUstom = () => {
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setVisible(false);
+    }, 10000);
+  }, []);
+  return <div>{visible ? <FunctioalC /> : <div>Gone</div>}</div>;
+};
+// firstTime logs => component mounted
+//after 10secs => component unmounted
+```
+
+```js
+function FunctioalC() {
+  const [a, setA] = useState("");
+  useEffect(() => {
+    console.log("initial render");
+    console.log(a);
+    return () => {
+      console.log("return thng called");
+    };
+  }, [a]);
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={a}
+        onChange={(e) => setA(e.target.value)}
+        className="border border-black px-3"
+        placeholder="test"
+      />
+    </div>
+  );
+}
+
+export { FunctioalC };
+```
+
+## lifeCycle Events in ClassBased Components
+
+```js
+import React from "react";
+class MyClassComponent extends React.Component {
+  //inital render
+  componentDidMount() {
+    console.log("mounted Component");
+  }
+  //when unmounted
+  componentWillUnmount() {
+    console.log("unmounted component");
+  }
+
+  //when props or sate changes
+  componentDidUpdate(prevProps, prevState) {
+    console.log(
+      "Component updated - Previous count:",
+      prevState.count,
+      "Current count:",
+      this.state.count,
+    );
+  }
+  constructor(props) {
+    super(props);
+    this.state = { count: 0 };
+  }
+  Inc = () => {
+    this.setState({ count: this.state.count + 1 });
+  };
+  Dec = () => {
+    this.setState({ count: this.state.count - 1 });
+  };
+  render() {
+    return (
+      <div>
+        <h1>{this.state.count}</h1>
+        <button onClick={this.Inc}>inc</button>
+        <br />
+        <button onClick={this.Dec}>Dec</button>
+      </div>
+    );
+  }
+}
+export { MyClassComponent };
+```
+
+---
 
 ```js
 
@@ -464,39 +581,34 @@ useMemo hook :
 
 */
 
-import { useSelector } from 'react-redux'
-import TodoItem from './TodoItem'
-import todoFilter from './TodoFilter'
-import { useMemo } from 'react'
+import { useSelector } from "react-redux";
+import TodoItem from "./TodoItem";
+import todoFilter from "./TodoFilter";
+import { useMemo } from "react";
 
-const Show = ({ tab = 'all' }) => {
-  const todoList = useSelector((state) => state.todos.todos)
+const Show = ({ tab = "all" }) => {
+  const todoList = useSelector((state) => state.todos.todos);
   //NOTE: without Memo
-  console.time('without memo')
-  const todosWithoutMemo = todoFilter(todoList, tab)
-  console.timeEnd('without memo')
+  console.time("without memo");
+  const todosWithoutMemo = todoFilter(todoList, tab);
+  console.timeEnd("without memo");
 
   //NOTE: with memo
-  console.time('with memo')
+  console.time("with memo");
   const todos = useMemo(() => {
-    return todoFilter(todoList, tab)
-  }, [tab, todoList])
-  console.timeEnd('with memo')
+    return todoFilter(todoList, tab);
+  }, [tab, todoList]);
+  console.timeEnd("with memo");
   return (
     <div>
       {todos.map((x) => {
-        return (
-          <TodoItem
-            key={x.id}
-            {...x}
-          />
-        )
+        return <TodoItem key={x.id} {...x} />;
       })}
     </div>
-  )
-}
+  );
+};
 
-export default Show
+export default Show;
 ```
 
 ## Lazy Loading
@@ -562,15 +674,15 @@ const EnhancedCard = (OldComponent) => {
         </div>
         <OldComponent {...props} />
       </div>
-    )
-  }
-}
+    );
+  };
+};
 
-export default EnhancedCard
+export default EnhancedCard;
 ```
 
 ```js
-import React from 'react'
+import React from "react";
 
 const Card1 = ({ name, price }) => {
   return (
@@ -581,10 +693,10 @@ const Card1 = ({ name, price }) => {
         Buy
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Card1
+export default Card1;
 ```
 
 ## usage
@@ -600,18 +712,9 @@ const HOC = EnhancedCard(Card1)
 ```js
 <BrowserRouter>
   <Routes>
-    <Route
-      path="/"
-      element={<Wrapper />}
-    >
-      <Route
-        path="/"
-        element={<Page />}
-      />
-      <Route
-        path="/c"
-        element={<CHnage />}
-      />
+    <Route path="/" element={<Wrapper />}>
+      <Route path="/" element={<Page />} />
+      <Route path="/c" element={<CHnage />} />
     </Route>
   </Routes>
 </BrowserRouter>
@@ -623,9 +726,9 @@ const HOC = EnhancedCard(Card1)
 - header and footer remains same based on the route paths Outlet is rendered
 
 ```js
-import Header from './Header'
-import { Outlet } from 'react-router-dom'
-import Footer from './Footer'
+import Header from "./Header";
+import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
 const Wrapper = () => {
   return (
     <div>
@@ -633,10 +736,10 @@ const Wrapper = () => {
       <Outlet />
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Wrapper
+export default Wrapper;
 ```
 
 ## useNavigate
@@ -644,25 +747,25 @@ export default Wrapper
 - it's used for navigating to other pages
 
 ```js
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 const Page = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div>
       <h2>Home page</h2>
       <button
         onClick={() => {
-          navigate('/c')
+          navigate("/c");
         }}
         className="px-4 py-2 rounded bg-blue-500 hover:bg-blue-700"
       >
         Go to change page
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
 ```
 
 ## Context
@@ -672,12 +775,12 @@ export default Page
 # App
 
 ```js
-import React, { useState } from 'react'
-import { ThemeContextProvider } from './ThemeContext'
-import Page from './Page'
+import React, { useState } from "react";
+import { ThemeContextProvider } from "./ThemeContext";
+import Page from "./Page";
 
 const Appp = () => {
-  const [theme, setTheme] = useState('dark')
+  const [theme, setTheme] = useState("dark");
   return (
     <div>
       <ThemeContextProvider
@@ -689,65 +792,65 @@ const Appp = () => {
         <Page />
       </ThemeContextProvider>
     </div>
-  )
-}
+  );
+};
 
-export default Appp
+export default Appp;
 ```
 
 ```js
-import { createContext, useContext } from 'react'
+import { createContext, useContext } from "react";
 
-const ThemeContext = createContext()
+const ThemeContext = createContext();
 
-export const ThemeContextProvider = ThemeContext.Provider
+export const ThemeContextProvider = ThemeContext.Provider;
 
 const useTheme = () => {
-  return useContext(ThemeContext)
-}
+  return useContext(ThemeContext);
+};
 
-export default useTheme
+export default useTheme;
 ```
 
 ```js
-import Button from './Button'
-import useTheme from './ThemeContext'
+import Button from "./Button";
+import useTheme from "./ThemeContext";
 const Page = () => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
   return (
     <div
       className={`h-[98vh] w-full ${
-        theme == 'dark' ? 'bg-gray-700' : 'bg-white'
+        theme == "dark" ? "bg-gray-700" : "bg-white"
       } `}
     >
       <Button />
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
 ```
 
 ## Button
 
 ```js
-import useTheme from './ThemeContext'
+import useTheme from "./ThemeContext";
 
 const Button = () => {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
   return (
     <div
       onClick={() => {
-        theme === 'dark' ? setTheme('light') : setTheme('dark')
+        theme === "dark" ? setTheme("light") : setTheme("dark");
       }}
       className="px-4 w-20 py-2 border bg-blue-500 hover:bg-blue-700"
     >
       Button
     </div>
-  )
-}
+  );
+};
 
-export default Button
+export default Button;
 ```
 
 ## Data fetching and posting
@@ -762,129 +865,129 @@ headers:{},body:JSON.stringify({})})`
 > `axios.get/post/put(url,{body:{}},{headers:{{}}})`
 
 ```js
-import { useEffect } from 'react'
-import './App.css'
-import axios from 'axios'
+import { useEffect } from "react";
+import "./App.css";
+import axios from "axios";
 function App() {
   //using axios
   const fetchData = async () => {
     try {
       const { data } = await axios.get(
-        'https://jsonplaceholder.typicode.com/posts',
-      )
-      console.log(data)
+        "https://jsonplaceholder.typicode.com/posts",
+      );
+      console.log(data);
     } catch (er) {
-      console.log(er)
+      console.log(er);
     }
-  }
+  };
 
   //fetch
   const fetchUsingFetch = async () => {
     try {
-      const resonse = await fetch('https://jsonplaceholder.typicode.com/posts')
-      const data = await resonse.json()
-      console.log('using f', data)
+      const resonse = await fetch("https://jsonplaceholder.typicode.com/posts");
+      const data = await resonse.json();
+      console.log("using f", data);
     } catch (er) {
-      console.log(er)
+      console.log(er);
     }
-  }
+  };
   //.then
   const fetchDt = () => {
     try {
-      fetch('https://jsonplaceholder.typicode.com/posts')
+      fetch("https://jsonplaceholder.typicode.com/posts")
         .then((res) => res.json())
 
-        .then((data) => console.log(data))
+        .then((data) => console.log(data));
     } catch (er) {
-      console.log(er)
+      console.log(er);
     }
-  }
+  };
 
   useEffect(() => {
     // fetchData();
     // fetchUsingFetch();
-    fetchDt()
-  }, [])
-  return <></>
+    fetchDt();
+  }, []);
+  return <></>;
 }
 
-export default App
+export default App;
 ```
 
 # Posting data
 
 ```js
-import { useEffect } from 'react'
-import './App.css'
-import axios from 'axios'
+import { useEffect } from "react";
+import "./App.css";
+import axios from "axios";
 function App() {
   //using axios post data
   const fetchData = async () => {
     try {
       const { data } = await axios.post(
-        'https://jsonplaceholder.typicode.com/posts',
+        "https://jsonplaceholder.typicode.com/posts",
         {
           body: {
-            body: 'xyz',
-            title: 'xyz',
+            body: "xyz",
+            title: "xyz",
             userId: 2,
           },
         },
         {
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         },
-      )
-      console.log(data)
+      );
+      console.log(data);
     } catch (er) {
-      console.log(er)
+      console.log(er);
     }
-  }
+  };
 
   //fetch
   const fetchUsingFetch = async () => {
     try {
       const resonse = await fetch(
-        'https://jsonplaceholder.typicode.com/posts',
+        "https://jsonplaceholder.typicode.com/posts",
         {
-          method: 'POST',
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            body: 'xyz',
-            title: 'xyz',
+            body: "xyz",
+            title: "xyz",
             userId: 2,
           }),
         },
-      )
-      const data = await resonse.json()
-      console.log('using f', data)
+      );
+      const data = await resonse.json();
+      console.log("using f", data);
     } catch (er) {
-      console.log(er)
+      console.log(er);
     }
-  }
+  };
   useEffect(() => {
     // fetchData();
     // fetchUsingFetch();
     // fetchDt()
-  }, [])
+  }, []);
   return (
     <>
       <button
         onClick={() => {
           // fetchData();
-          fetchUsingFetch()
+          fetchUsingFetch();
         }}
       >
         Click to post the data
       </button>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
 ```
 
 ## Loading, error - Tanstack query
@@ -946,21 +1049,21 @@ export default Disp;
 ### debouncing
 
 ```js
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 const useDebounce = (value) => {
-  const [debouncedValue, setDebouncedValue] = useState(value)
+  const [debouncedValue, setDebouncedValue] = useState(value);
   useEffect(() => {
     setTimeout(() => {
-      const timeout = setDebouncedValue(value)
+      const timeout = setDebouncedValue(value);
       return () => {
-        clearTimeout(timeout)
-      }
-    }, 1000)
-  })
-  return debouncedValue
-}
+        clearTimeout(timeout);
+      };
+    }, 1000);
+  });
+  return debouncedValue;
+};
 
-export default useDebounce
+export default useDebounce;
 
 // instead of making api calls for every letter typing it delays a bit and only one call is made after few seconds
 // This makes optimization
@@ -969,43 +1072,42 @@ export default useDebounce
 ### throttling
 
 ```js
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 
 const useThrottle = (value) => {
-  const [val, setVal] = useState('')
+  const [val, setVal] = useState("");
   useEffect(() => {
-    let lastCall = 0
+    let lastCall = 0;
     function Outer() {
-      let a = 1
+      let a = 1;
       function Inner() {
-        console.log(a)
+        console.log(a);
       }
-      return Inner
+      return Inner;
     }
 
-    let closure = Outer()
+    let closure = Outer();
 
-    console.log(closure())
+    console.log(closure());
     const throttle = () => {
-      const now = Date.now()
+      const now = Date.now();
       if (now - lastCall > 1000) {
-        lastCall = now
-        setVal(value)
+        lastCall = now;
+        setVal(value);
       }
-    }
-    const timer = setTimeout(throttle, 1000)
+    };
+    const timer = setTimeout(throttle, 1000);
     return () => {
-      clearTimeout(timer)
-    }
-  }, [value])
-  return val
-}
-export default useThrottle
+      clearTimeout(timer);
+    };
+  }, [value]);
+  return val;
+};
+export default useThrottle;
 // makes call after every interval not after delay
 ```
 
 ```js
-
 import { useState } from "react";
 import "./App.css";
 import Input from "./Input"
@@ -1056,31 +1158,31 @@ export default Display;
 ## Image Slider\_ Carousal
 
 ```js
-import React, { useEffect, useState } from 'react'
-import Button from './Button'
+import React, { useEffect, useState } from "react";
+import Button from "./Button";
 
 const Wrapper = () => {
   const images = [
     {
       img_link:
-        'https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=800',
+        "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
     {
       img_link:
-        'https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=800',
+        "https://images.pexels.com/photos/164634/pexels-photo-164634.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
     {
       img_link:
-        'https://images.pexels.com/photos/244206/pexels-photo-244206.jpeg?auto=compress&cs=tinysrgb&w=800',
+        "https://images.pexels.com/photos/244206/pexels-photo-244206.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
     {
       img_link:
-        'https://images.pexels.com/photos/707046/pexels-photo-707046.jpeg?auto=compress&cs=tinysrgb&w=800',
+        "https://images.pexels.com/photos/707046/pexels-photo-707046.jpeg?auto=compress&cs=tinysrgb&w=800",
     },
-  ]
-  const [item, setItem] = useState(0)
+  ];
+  const [item, setItem] = useState(0);
   function handlePrev() {
-    item !== 0 ? setItem(item - 1) : setItem(images.length - 1)
+    item !== 0 ? setItem(item - 1) : setItem(images.length - 1);
   }
   {
     /*
@@ -1089,14 +1191,14 @@ const Wrapper = () => {
   }
   useEffect(() => {
     const Time = setTimeout(() => {
-      item === images.length - 1 ? setItem(0) : setItem(item + 1)
-    }, 5000)
+      item === images.length - 1 ? setItem(0) : setItem(item + 1);
+    }, 5000);
     return () => {
-      clearTimeout(Time)
-    }
-  }, [item])
+      clearTimeout(Time);
+    };
+  }, [item]);
   function handleNext() {
-    item === images.length - 1 ? setItem(0) : setItem(item + 1)
+    item === images.length - 1 ? setItem(0) : setItem(item + 1);
   }
   return (
     <div className=" h-96 mt-10 flex items-center  justify-center ">
@@ -1111,18 +1213,18 @@ NOTE:
         return (
           <img
             className={`w-[700px] h-[500px] object-contain  ${
-              i === item ? 'block' : 'hidden'
+              i === item ? "block" : "hidden"
             }`}
             key={x.img_link}
             src={x.img_link}
             alt="sliderImages"
           />
-        )
+        );
       })}
       <Button onClick={handleNext}>Next</Button>
     </div>
-  )
-}
+  );
+};
 
-export default Wrapper
+export default Wrapper;
 ```
