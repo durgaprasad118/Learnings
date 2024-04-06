@@ -137,3 +137,69 @@ app.put('/usr', (req, res) => {
   })
 })
 ```
+
+
+
+## Generics
+
+## Need and Syntax
+
+```js
+function ConvertToArrayNumber(x: number): number[] {
+  return [x]
+}
+
+function ConvertToArrayString(x: string): string[] {
+  return [x]
+}
+
+function ConvertToArrayBool(x: boolean): boolean[] {
+  return [x]
+}
+
+//we find a common pattern here
+// we need to establish a realtion between input and the return type
+// the below is a generic Type
+function ConvertAny<T>(x: T): T[] {
+  return [x]
+}
+const ConvertToAnyType = <T>(x: T): T[] => {
+  return [x]
+}
+const num = ConvertAny < number > 5
+console.log(num)
+
+const str = ConvertAny < string > 'dp'
+console.log(str[0].toUpperCase())
+
+```
+```js
+// return the index of the given target, given an array
+
+const arr1 = [1, 2, 4, 5]
+const arr2 = ['a', 'b', 'CD', 'EF']
+
+function GetIndex<T>(arr: T[], target: T): number {
+  return arr.findIndex((x) => x === target)
+}
+
+const Indexx = <T>(arr: T[], target: T): number => {
+  return arr.findIndex((x) => x === target)
+}
+// console.log(GetIndex(arr1, 2))
+// console.log(GetIndex(arr2, 'a'))
+
+// take two args and return array of them
+
+const ReturnArray = <T, K>(item1: T, item2: K): [T, K] => {
+  return [item1, item2]
+}
+
+const arary = ReturnArray<number, string>(2, 'bd')
+console.log(arary)
+
+// we can also restrict the types
+// <T extends string | number>
+// using boolean gives error
+
+```
