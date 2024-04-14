@@ -18,7 +18,7 @@ function App() {
         "https://api.cloudinary.com/v1_1/dqldwnp13/image/upload",
         dataUpload,
       );
-      console.log(response?.data);
+      console.log(response?.data?.url);
     } catch (error) {
       console.log(error);
     }
