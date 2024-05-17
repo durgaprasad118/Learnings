@@ -20,7 +20,7 @@ const Todos: React.FC = () => {
       console.error(error);
     }
   }
-  useEffect(() => {
+   useEffect(() => {
     fetchDt();
   }, []);
   if (loading) {

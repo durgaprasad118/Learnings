@@ -4,6 +4,7 @@ import { todoAtom } from ".";
 import { TodoType } from "./Types";
 
 const Input = () => {
+  let a = 5;
   const [todo, setTodo] = useState<string>("");
   const setTodos = useSetRecoilState(todoAtom);
   function AddTodo() {
@@ -26,7 +27,6 @@ const Input = () => {
         onChange={(e) => setTodo(e.target.value)}
         type="text"
         name="age"
-        className="px-10 py-2 border-2 border-black rounded-md"
       />
       <button
         onClick={AddTodo}

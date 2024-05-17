@@ -1,6 +1,7 @@
 let arr = [];
 //adding to the last of the array => we can add any nuber of elements to the arrray end
 arr.push(1, 2, 3);
+console.log("hello");
 console.log(arr);
 // returns the popped value and removes the last value of the array
 let popped = arr.pop();

@@ -16,3 +16,6 @@ const goToShop = (item = "something") =>
   console.log(`I'm going to buy ${item} from the grocery shop`);
 
 goToShop("milk");
+
+
+const a1;

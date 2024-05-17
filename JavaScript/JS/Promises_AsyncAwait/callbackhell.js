@@ -16,6 +16,8 @@ function promisified(duration) {
   });
 }
 
+let a = 1112;
+
 //calling
 // promise chaining
 // promisified(1000)

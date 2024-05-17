@@ -8,12 +8,9 @@ function App() {
     if (image) {
       dataUpload.append("file", image);
     }
-    // upload_preset => "unsigned"
-    // in settings/upload set it to unsigned
     dataUpload.append("upload_preset", "ml_default");
 
     try {
-      // url =>https://api.cloudinary.com/v1_1/cloud_name/image/upload
       const response = await axios.post(
         "https://api.cloudinary.com/v1_1/dqldwnp13/image/upload",
         dataUpload,
