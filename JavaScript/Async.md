@@ -65,30 +65,6 @@ console.log("Synchronous code");
 - It may take a lot of time (2nd task) even then after second task one is done
 - the first task waits in callback queue till 2 finishes the execution
 
-```js
-const promise = new Promise((resolve, reject) => {
-  // asynchronous operation
-  //  call resolve(value) when the operation succeds
-  //  call reject(error) when the operation fails
-});
-
-// a promise may have one of these three states
-// pending => it is the initial state of a promise it means async operation is still going on and promise is neither fulfilled nor rejected
-// fulfilled => async operation completed and promise is resolved with a value
-//  rejected => async operation has encountered an error and promise is rejected with an error reason
-
-// we use promise.then() and catch() to handle promise results with a callback in them and .finally() is always executed no matter resolved or rejected
-
-/*
-new Promise(executor)
-state: pending          => result("done")=> state: fulfilled
-result : undefined                           result: done
-new Promise(executor)
-state: pending          => result("error")=> state: rejected
-result : undefined                           result: error
-*/
-```
-
 ## Promise
 
 - The `promise object` represents the eventual completion(or failure) of an asynchronous operation and its resulting value
@@ -143,45 +119,6 @@ answer
 - `catch` - rejected
 - `finally` - in all cases
 
-
-## Problem
-```js
-console.log("start");
-
-function loginUser(email, password) {
-  setTimeout(() => {
-    console.log("now we get the email and the email is: "+email);
-    return { userEmail: email };
-  }, 2000);
-}
-
-const user = loginUser("davaid.com", 123456);
-console.log(user); //undefined
-// because the info did not come yet by the time we consoled it
-console.log("end");
-```
-
-## solution
-```js
-console.log("start");
-
-function loginUser(email, password, callback) {
-  setTimeout(() => {
-    console.log("now we get the email and the email is: " + email);
-    callback({ userEmail: email });
-  }, 2000);
-}
-
-const user = loginUser("davaid.com", 123456, (data) => {
-  console.log(data);
-});
-// console.log(user); //undefined
-// because the info did not come yet by the time we consoled it
-console.log("end");
-
-// here i am calling the callback function that is passed once the timer expires
-```
-
 ## Promises
 ```js
 function loginUser(email, password) {
@@ -196,5 +133,65 @@ loginUser("dp@gmail.com", 123456).then((data) => console.log(data));
 
 
 
+### Cb vs promise vs async await
+```js
+function fetchdt(cb) {
+  setTimeout(() => {
+    let daata = "dp";
+    cb(daata);
+  }, 1000);
+}
+
+fetchdt((x) => {
+  console.log(x);
+});
+
+function fetchUsingPromise() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let data = "dp";
+      resolve(data);
+      // reject("error");
+    }, 1000);
+  });
+}
+
+fetchUsingPromise()
+  .then((x) => console.log(x))
+  .catch((er) => console.log(er))
+  .finally(() => console.log("done"));
+
+async function fetchUsingAsync() {
+  try {
+    const response = await fetchUsingPromise();
+    console.log(response);
+  } catch (er) {
+    console.log(er);
+  }
+}
+
+fetchUsingAsync();
+```
 
 
+## Callback Hell
+```js
+
+setTimeout(() => {
+  console.log("First after 1s");
+  setTimeout(() => {
+    console.log("second hello");
+    setTimeout(() => {
+      console.log("third after 3 seconds");
+    }, 3000);
+  }, 2000);
+}, 1000);
+
+// this can be got rid by
+
+function promisified(duration) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, duration);
+  });
+}
+```

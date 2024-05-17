@@ -1,12 +1,13 @@
 # Table of Contents
+- [Table of Contents](#table-of-contents)
 - [class Vs Classname](#class-vs-classname)
 - [form](#form)
 - [forEach (faster) VS map =\> both require callbacks, (ele,index,arry)](#foreach-faster-vs-map--both-require-callbacks-eleindexarry)
+- [map](#map)
 - [map filter, reduce](#map-filter-reduce)
 - [destructuring , rest , spread](#destructuring--rest--spread)
-- [optional chaining](#optional-chaining)
-- [Sorting](#comparison-function-sorting)
-- [nullish](#nullish-coalescing-operator)
+  - [Nullish coalescing operator](#nullish-coalescing-operator)
+- [Parse and json](#parse-and-json)
 
 # class Vs Classname
 - differnce between `class and classname`
@@ -168,3 +169,26 @@ numbers.sort((a,b)=> b-a)
 -  If the result of the function is negative, `a comes before b`. If the result is positive, `b comes before a`. If the result is zero, the order of `a and b remains unchanged.`
 ## Nullish coalescing operator
 - The behavior of the ?? operator is simple: it returns the value of the left-hand operand (a) if it is not null or undefined, and if it is null or undefined, it returns the value of the right-hand operand (b). In other words, it provides a default value (b) when the left-hand operand (a) is null or undefined.
+
+# Parse and json
+```js
+//when we need to send data we store in toString()
+//
+
+const users = '{"name": "Harkirat", "age":2}';
+console.log(users.name); // this is a string => undefined
+
+const user = JSON.parse(users);
+console.log(user.name);
+
+const str = JSON.stringify(user);
+console.log(typeof str); // string
+
+// Stringify => converts to Stringify
+// parse => converts string to js object
+
+// Stringigy => for passing data to some other Sources
+// Parse => for parsing data that is coming from some server
+
+
+```

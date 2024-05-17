@@ -1,24 +1,27 @@
 # Arrays
-- [Declaration](#declaration)
-- [from](#from)
-- [Add remove](#add-remove)
-- [Loops](#loops)
-- [Map - for entire array](#map---for-entire-array)
-- [filter - for filtering the array](#filter---for-filtering-the-array)
-- [reduce](#reduce)
-- [some](#some)
-- [every](#every)
-- [find](#find)
-- [forEach](#foreach)
-- [concat](#concat)
-- [slice()](#slice)
-- [Splice(start,noof delte?, what to add)](#splicestartnoof-delte-what-to-add)
-- [fill](#fill)
-- [findIndex](#findindex)
-- [flat](#flat)
-- [reversing array](#reversing-array)
-- [sort](#sort)
-- [Spread and rest](#spread-and-rest)
+- [Arrays](#arrays)
+  - [Declaration](#declaration)
+  - [from](#from)
+  - [Add remove](#add-remove)
+  - [Loops](#loops)
+  - [Map - for entire array](#map---for-entire-array)
+  - [filter - for filtering the array](#filter---for-filtering-the-array)
+  - [reduce](#reduce)
+  - [some](#some)
+  - [every](#every)
+  - [find](#find)
+  - [forEach](#foreach)
+  - [concat](#concat)
+  - [slice()](#slice)
+  - [Splice(start,noof delte?, what to add)](#splicestartnoof-delte-what-to-add)
+  - [fill](#fill)
+  - [findIndex](#findindex)
+  - [flat](#flat)
+  - [reversing array](#reversing-array)
+  - [sort](#sort)
+  - [Spread and rest](#spread-and-rest)
+- [Strings](#strings)
+- [Number](#number)
 
 
 ## Declaration
@@ -218,18 +221,6 @@ let sorted = arr.sort((a, b) => {
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 ## Spread and rest
 
 - for copying arrays
@@ -240,3 +231,61 @@ let answer = [...arr]; //spread
 
 - To get the paramters in the function `rest ` is used
 
+# Strings
+```js
+const str = "hello world";
+console.log(str.length);
+
+const index = str.indexOf("o");
+console.log(index);
+
+const lastIndex = str.lastIndexOf("o");
+console.log(lastIndex);
+
+//slice (part between first(incl) and lst(exclueded))
+let sliced = str.slice(0, 4);
+console.log(sliced);
+
+let value = "harkirat singh";
+
+// the first argument is index and the 2nd argumet is the LENGTH
+let sub = value.substr(2, 5); // from 2 5 characters
+
+let slicee = value.slice(2, 5); // 2-5(excluded);
+
+console.log(sub, slicee);
+
+///replace(
+// if found replaces => if not gives the same string
+const torp = "hello world";
+// repalces first match
+console.log(torp.replace("o", "O"));
+// repalces all matches
+
+console.log(torp.replaceAll("o", "O"));
+
+// split
+let s = "hello";
+console.log(s.split(""));
+
+//for spaces _ use trim
+const vale = "  harkirat   ";
+console.log(vale.trim());
+console.log(vale.trimStart());
+```
+# Number
+```js
+// parseInt();
+// converts string to integer
+console.log(parseInt("42")); // 42
+console.log(parseInt("42px")); //42
+console.log(parseInt("3.123")); //3
+console.log(parseInt("hello4")); //NaN
+
+//parseFloat();
+// if there  is a floating vlaue it gives the floating vlaue
+console.log(parseFloat("42")); // 42
+console.log(parseFloat("42px")); //42
+console.log(parseFloat("3.123")); //3.123
+console.log(parseFloat("hello4")); //NaN
+```
