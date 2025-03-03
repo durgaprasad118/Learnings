@@ -1,3 +1,6 @@
+function xy() {
+    return 1;
+}
 //Function to add two numbers
 function add(a, b) {
     let res = a + b;
