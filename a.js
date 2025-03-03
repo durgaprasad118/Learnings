@@ -45,3 +45,4 @@ let strings = ['apple', 'banana', 'cherry'];
 let processedStrings = processStrings(strings);
 
 console.log('Processed strings:', processedStrings);
+Hello;
